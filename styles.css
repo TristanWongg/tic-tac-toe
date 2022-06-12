@@ -1,0 +1,37 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body{
+    height: 100%;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 3em;
+}
+
+.gameboard{
+    display: grid;
+    grid-template: repeat(3, 100px) / repeat(3, 100px);
+}
+
+.square{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px dotted black;
+}
+
+.square:hover{
+    cursor: pointer;
+}
+
+button{
+    padding: 1em;
+}
