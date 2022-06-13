@@ -1,20 +1,23 @@
 const createGameboard = () => {
     const boardArray = new Array(9).fill('');
-    let div = document.querySelector('div');
+    let div = document.getElementById('gameboard-container');
+    let squaresDiv = document.getElementById('squares-container');
 
     const displayGameboard = () => {
         let index = 0;
         boardArray.forEach(element => {
             let square = document.createElement('div');
-            square.classList = 'square';
+            square.classList = `s${index} square`;
             square.dataset.index = index++;
-            div.appendChild(square);
+            squaresDiv.appendChild(square);
+            div.appendChild(squaresDiv);
         });
+        console.log(boardArray);
     }
     
     const resetBoard = () => {
         boardArray.fill('');
-        div.innerHTML = '';
+        squaresDiv.innerHTML = '';
     }
     
     displayGameboard();
@@ -28,11 +31,13 @@ const Player = (num) => {
 };
 
 const Game = () => {
+    let displayResults = document.getElementById('results-text');
     const p1 = Player(1);
     const p2 = Player(2);
     const gameboard = createGameboard();
     const gameboardArray = gameboard.boardArray;
     let turn = p1;
+    displayResults.textContent = `Player ${turn.mark}'s turn`;
     let result = false;
 
     let squares = Array.from(document.getElementsByClassName('square'));
@@ -43,24 +48,30 @@ const Game = () => {
                     square.textContent = p1.mark;
                     gameboardArray[square.dataset.index] = p1.mark;
                     if(checkWinner(gameboardArray, p1)){
-                        console.log(turn.name + " Wins!");
+                        displayResults.textContent = turn.name + " Wins!";
                         result = true;
                     }
-                    turn = p2;
+                    else{
+                        turn = p2;
+                        displayResults.textContent = `Player ${turn.mark}'s turn`;
+                    }
                 }
                 else{
                     square.textContent = p2.mark;
                     gameboardArray[square.dataset.index] = p2.mark;
                     if(checkWinner(gameboardArray, p2)){
-                        console.log(turn.name + " Wins!");
+                        displayResults.textContent = turn.name + " Wins!";
                         result = true;
                     }
-                    turn = p1;
+                    else{
+                        turn = p1;
+                        displayResults.textContent = `Player ${turn.mark}'s turn`;
+                    }
                 }
             }
             if (!result){
                 if (gameboardArray.every(index => {return index !== '';})){
-                    console.log("DRAW!");
+                    displayResults.textContent = "DRAW!";
                     result = true;
                 }
             }

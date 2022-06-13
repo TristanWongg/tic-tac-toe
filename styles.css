@@ -9,29 +9,75 @@ html, body{
 }
 
 body{
+    background-color: #d9f99d;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    gap: 3em;
+    gap: 2em;
 }
 
-.gameboard{
+h1{
+    font-size: 4em;
+    text-decoration: line-through;
+    text-decoration-color: #84cc16;
+    text-decoration-thickness: 3px;
+    padding: 10px;
+}
+
+#results-text{
+    height: 2em;
+    font-weight: bold;
+    font-size: x-large;
+    font-style: italic;
+}
+
+#gameboard-container{
+    border: 1em double #84cc16;
+}
+
+#squares-container{
+    background-color: #ecfccb;
     display: grid;
-    grid-template: repeat(3, 100px) / repeat(3, 100px);
+    grid-template: repeat(3, 120px) / repeat(3, 120px); 
+    padding: 10px;  
 }
 
 .square{
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px dotted black;
+    border: 3px solid black;
+    font-size: xx-large;
+}
+
+.s0, .s1, .s2{
+    border-top: none;
+}
+
+.s0, .s3, .s6{
+    border-left: none;
+}
+
+.s2, .s5, .s8{
+    border-right: none;
+}
+
+.s6, .s7, .s8{
+    border-bottom: none;
 }
 
 .square:hover{
     cursor: pointer;
 }
 
+
 button{
     padding: 1em;
+    border-radius: 5em;
+    border: 5px double #84cc16;
+    background-color: #ecfccb;
+    font-weight: bold;
+    font-size: medium;
+    width: 150px;
 }
+
