@@ -46,6 +46,7 @@ const Game = () => {
             if(square.textContent === '' && result === false){
                 if(turn === p1){
                     square.textContent = p1.mark;
+                    square.style.color = 'red';
                     gameboardArray[square.dataset.index] = p1.mark;
                     if(checkWinner(gameboardArray, p1)){
                         displayResults.textContent = turn.name + " Wins!";
